@@ -123,7 +123,7 @@ def replace_path(k_nearest_image_paths, args):
         ref_paths = os.path.join('../voxceleb/unzippedFaces/',unfrontal_face_path,'*.jpg')
         ref_path = glob.glob(ref_paths)[0]
         # print(ref_path)
-        ref_image = preprocess(Image.open(ref_path)).unsqueeze(0).to(device)
+        ref_image = preprocess(Image.open(ref_path)).unsqueeze(0).to(args.device)
         with torch.no_grad():
             ref_image_features = clip_model.encode_image(ref_image)
 
@@ -132,7 +132,7 @@ def replace_path(k_nearest_image_paths, args):
         simi_list = []
         with torch.no_grad():
             for image_path in imgs:
-                image = preprocess(Image.open(image_path)).unsqueeze(0).to(device)
+                image = preprocess(Image.open(image_path)).unsqueeze(0).to(args.device)
                 image_features = clip_model.encode_image(image)
                 simi = ref_image_features@image_features.t()
                 simi_list.append(simi.item())
@@ -165,14 +165,9 @@ if __name__ == '__main__':
     model.eval()
     frame = torch.randn(1,3,256,256).to(args.device)
 
-    # wav_path = '/media/cwy/37620A9A581B65F3/data/VoxCeleb1/wav/id10008/CXgomMquVt8/00003.wav'
-    # wav_path = '/media/cwy/37620A9A581B65F3/data/VoxCeleb1/wav/id10014/6RiWT7JoAkk/00003.wav'
-    # wav_path = '/media/cwy/37620A9A581B65F3/data/VoxCeleb1/wav/id11251/5-6lI5JQtb8/00001.wav'
-    # wav_path = '/media/cwy/37620A9A581B65F3/data/VoxCeleb1/wav/id10153/81LUckMu7qI/00003.wav'
-    # wav_path = '/media/cwy/37620A9A581B65F3/data/VoxCeleb1/wav/id10153/LgWFAJ6C98Q/00001.wav'
+   
     wav_path = '../voxceleb/wav/id10845/0RsOMTn-DSM/00001.wav'
-    # wav_path = '/media/cwy/37620A9A581B65F3/data/VoxCeleb1/wav/id10883/H4nXd3zgK1Y/00001.wav'
-    # wav_path = '/media/cwy/37620A9A581B65F3/data/VoxCeleb1/wav/id10724/DP5gCFoWgGI/00001.wav'
+   
 
     fbank = audio_preprocess(wav_path).unsqueeze(0).to(args.device).detach()
 
@@ -187,8 +182,8 @@ if __name__ == '__main__':
 
     # replace image paths to frontal face 
     final_result = replace_path(k_nearest_image_paths, args)
-    print('replaced paths:')
-    print(final_result)
+    # print('replaced paths:')
+    # print(final_result)
     
     
     init_latents = project2latent(ckpt=args.styleganckpt, files=final_result,size=args.size, step=300)

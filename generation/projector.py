@@ -246,10 +246,12 @@ def project2latent(ckpt,files,size=256, step=500):
 
     # torch.save(result_file, filename)
     # TODO 存单个图像和pt，存均值图像和pt
+
+
 if __name__ =='__main__':
     import glob
     
-    folder = '/home/cwy/文档/data/VGG_ALL_FRONTAL/Aaron_Staton'
+    folder = '/home/cwy/data/VGG_ALL_FRONTAL/Aaron_Staton'
     imgs = glob.glob(os.path.join(folder,'*.jpg'))
     print(imgs[:3])
     ckpt = '/media/cwy/sdb1/data/weights/550000.pt'
