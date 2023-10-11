@@ -204,7 +204,8 @@ def project2latent(ckpt,files,size=256, step=500):
         pbar.set_description(
             (
                 f"perceptual: {p_loss.item():.4f}; noise regularize: {n_loss.item():.4f};"
-                f" mse: {mse_loss.item():.4f}; lr: {lr:.4f}"
+                f" mse: {mse_loss.item():.4f}; "
+                f"id: {identity_loss.item():.4f}; lr: {lr:.4f}"
             )
         )
     # print(latent_path[-1].shape)

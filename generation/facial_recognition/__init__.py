@@ -12,7 +12,7 @@ class IDLoss(nn.Module):
         print('Loading ResNet ArcFace')
         self.facenet = Backbone(input_size=112, num_layers=50, drop_ratio=0.6, mode='ir_se')
         # you can download from https://drive.google.com/file/d/1KW7bjndL3QG3sxBbZxreGHigcCCpsDgn/view
-        self.facenet.load_state_dict(torch.load("/media/cwy/sdb1/data/weights/model_ir_se50.pth"))
+        self.facenet.load_state_dict(torch.load("../weights/model_ir_se50.pth"))
         self.pool = torch.nn.AdaptiveAvgPool2d((256, 256))
         self.face_pool = torch.nn.AdaptiveAvgPool2d((112, 112))
         if use_gpu:

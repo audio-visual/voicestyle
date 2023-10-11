@@ -14,13 +14,20 @@ link[] put these files to the `weights` folder
 https://github.com/rosinality/stylegan2-pytorch
 id loss model_ir_se50.pth: https://drive.google.com/file/d/1KW7bjndL3QG3sxBbZxreGHigcCCpsDgn/view
 
-**Full pipeline:**
+**Full pipeline**
 ```
 voice --> (1) find k nearest image prototypes --> (2) get the corresponding image paths
   ↓                                                        ↓
 (7) compute CMPC similarity loss               (3) project images to StyleGAN's latent space                                 
   ↑                                                        ↓
 (6) generated image <-- (5) feed init to generator <-- (4) aggregate these latent code as init code 
+```
+
+**inference**
+```bash
+> cd generation
+# we uploaded two examples and their releated files, so you can go through the full pipeline
+> python pipleline.py
 ```
 
 > Notice that the first stage is training and testing on images with a resolution of 224x224. However, the StyleGAN(pytorch version) was trained based on 256x256 images. Therefore, in order to obtain better results, we chose to retrain a 256-size version of the CMPC model. (Of course, you can also use the checkpoint of the original 224-size CMPC model and perform upsampling operations in the code)
