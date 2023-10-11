@@ -1,18 +1,19 @@
 # voicestyle
- Guess the appearance of an unseen person's face from their unheard voice. A Voice Based Generation Model
+ Guess the appearance of an unseen person's face from their unheard voice. A voice-based generation model.
 
 # Inference
 
+**Install CMPC**  
 In order to make it more convenient to use CMPC, we referred to the approach of CLIP: added some methods and provided external APIs.   
-Finally, we encapsulated it in the form of a Python package `cmpc2` 
-
-**Install CMPC**
+Finally, we encapsulated it in the form of a Python package `cmpc2`   
 ```pip install git+https://github.com/audio-visual/cmpc2.git```
 
-**Download checkpoints and necessary files**
-link[] put these files to the `weights` folder
-https://github.com/rosinality/stylegan2-pytorch
-id loss model_ir_se50.pth: https://drive.google.com/file/d/1KW7bjndL3QG3sxBbZxreGHigcCCpsDgn/view
+**Download checkpoints and necessary files**  
+https://drive.google.com/drive/folders/1U77L9kx95HrpMPBnJGMVb4ShUr3iTR26?usp=drive_link   
+stylegan's checkpoint 550000.pt: https://github.com/rosinality/stylegan2-pytorch  
+id loss releated checkpoint model_ir_se50.pth: https://drive.google.com/file/d/1KW7bjndL3QG3sxBbZxreGHigcCCpsDgn/view  
+put these files to the `weights` folder
+
 
 **Full pipeline**
 ```
@@ -23,7 +24,7 @@ voice --> (1) find k nearest image prototypes --> (2) get the corresponding imag
 (6) generated image <-- (5) feed init to generator <-- (4) aggregate these latent code as init code 
 ```
 
-**inference**
+**Generate**
 ```bash
 > cd generation
 # we uploaded two examples and their releated files, so you can go through the full pipeline
@@ -34,7 +35,8 @@ voice --> (1) find k nearest image prototypes --> (2) get the corresponding imag
 
 
 Important things about GAN inversion(step3):  
-Regarding the GAN inversion, we have conducted experiments in advance to test its performance. For the testing process, please refer to: https://github.com/audio-visual/investigate_stylegan. The test results show that the low-quality, excessively large head angle, and misaligned images in the voxceleb dataset (although they can be aligned through post-processing, but due to low resolution, the post-processing results are very bad) are not suitable for gan inversion.  
+Regarding the GAN inversion, we have conducted experiments in advance to test its performance. For the testing process, please refer to: https://github.com/audio-visual/investigate_stylegan.   
+The test results show that the low-quality, excessively large head angle, and misaligned images in the voxceleb dataset (although they can be aligned through post-processing, but due to low resolution, the post-processing results are very bad) are not suitable for gan inversion.    
 
 Therefore, we adopted a compromise solution, that is, replacing the faces in voxceleb videos with the same faces in vggface(filterd by https://github.com/cmu-mlsp/reconstructing_faces_from_voices, named VGG_ALL_FRONTAL). However, this also has limitation, that is, vggface does not have video-level tags, and the appearance, makeup, and expressions of the same person will vary greatly (as shown in the below). This may reduce model performance. 
 
@@ -44,6 +46,8 @@ Examples from VGG_ALL_FRONTAL 'Luke_Mitchell'
 **input voice example1:** 
 
 https://github.com/audio-visual/voicestyle/assets/110716367/a3b602f7-84a0-4f7a-947e-f7bfcbe77eea 
+
+You can try to imagine it first :)
 
  generated face  |  real face
 :-------------------------:|:-------------------------: 
