@@ -1,5 +1,5 @@
 # voicestyle
- Guess the appearance of an unseen person's face from their unheard voice. A voice-based generation model. Corresponding paper: [TOMM-Voicetyle](https://dl.acm.org/doi/10.1145/3671002)
+ Guess the appearance of an unseen person's face from their unheard voice. A voice-based generation model. Corresponding paper: [TOMM-VoiceStyle](https://dl.acm.org/doi/10.1145/3671002)
 
 # Inference
 
