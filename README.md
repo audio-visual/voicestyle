@@ -1,5 +1,5 @@
 # voicestyle
- Guess the appearance of an unseen person's face from their unheard voice. A voice-based generation model.
+ Guess the appearance of an unseen person's face from their unheard voice. A voice-based generation model. Corresponding paper: [TOMM-Voicetyle](https://dl.acm.org/doi/10.1145/3671002)
 
 # Inference
 
@@ -65,4 +65,25 @@ https://github.com/audio-visual/voicestyle/assets/110716367/305f6191-ba66-4e8f-9
 
  <img src='https://github.com/audio-visual/voicestyle/blob/main/results/id10845_0RsOMTn-DSM.png' width='256px'/>  | <img src='https://github.com/audio-visual/voicestyle/assets/110716367/7a2eeddf-8193-4ebc-ae32-7833382277b6' width='256px'/> 
 
+## Citation
 
+```
+@article{10.1145/3671002,
+author = {Chen, Wuyang and Zhu, Boqing and Xu, Kele and Dou, Yong and Feng, Dawei},
+title = {VoiceStyle: Voice-Based Face Generation via Cross-Modal Prototype Contrastive Learning},
+year = {2024},
+issue_date = {September 2024},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {20},
+number = {9},
+issn = {1551-6857},
+url = {https://doi.org/10.1145/3671002},
+doi = {10.1145/3671002},
+journal = {ACM Trans. Multimedia Comput. Commun. Appl.},
+month = sep,
+articleno = {279},
+numpages = {23},
+keywords = {Cross-modal representation learning, contrastive learning, StyleGAN, face generation}
+}
+```
